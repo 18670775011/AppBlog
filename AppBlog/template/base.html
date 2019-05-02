@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'res/layui/css/layui.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'res/css/main.css' %}">
+    {#导入CSS样式#}
+    {% block CSSETX %}
+    {% endblock %}
+
+    <!--加载meta IE兼容文件-->
+    <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+{#头部#}
+<div class="header">
+    <div class="menu-btn">
+        <div class="menu"></div>
+    </div>
+    <h1 class="logo">
+        <a href="index.html">
+            <span>MYBLOG</span>
+            <img src="{% static 'res/img/logo.png' %}">
+        </a>
+    </h1>
+    <div class="nav">
+        <a href="index.html" class="active">文章</a>
+        <a href="whisper.html">微语</a>
+        <a href="leacots.html">留言</a>
+        <a href="album.html">相册</a>
+        <a href="about.html">关于</a>
+    </div>
+    <ul class="layui-nav header-down-nav">
+        <li class="layui-nav-item"><a href="index.html" class="active">文章</a></li>
+        <li class="layui-nav-item"><a href="whisper.html">微语</a></li>
+        <li class="layui-nav-item"><a href="leacots.html">留言</a></li>
+        <li class="layui-nav-item"><a href="album.html">相册</a></li>
+        <li class="layui-nav-item"><a href="about.html">关于</a></li>
+    </ul>
+    <p class="welcome-text">
+        欢迎来到<span class="name">艾胖胖</span>的博客☺
+    </p>
+</div>
+
+{#内容#}
+<div id="contents">
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+{#底部#}
+<div class="footer-wrap">
+    <div class="footer w1000">
+        <div class="qrcode">
+            <img src="{% static 'res/img/erweima.jpg' %}">
+        </div>
+        <div class="practice-mode">
+            <img src="{% static 'res/img/down_img.jpg' %}">
+            <div class="text">
+                <h4 class="title">我的联系方式</h4>
+                <p>微信<span class="WeChat">qq798075744</span></p>
+                <p>邮箱<span class="email">798075744@qq.com</span></p>
+                <p>More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect
+                    from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{#导入js样式#}
+{% block JSETX %}
+{% endblock %}
+</body>
+</html>
