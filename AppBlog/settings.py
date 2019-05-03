@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'AppBlog.apps.blog',
+    'AppBlog.apps.user',
 ]
 
 MIDDLEWARE = [
@@ -120,10 +121,9 @@ USE_TZ = True
 
 # 静态资源文件
 STATIC_URL = '/static/'
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 
 # 上传目录
-MDEIA_ROOT = os.path.join(STATICFILES_DIRS, 'upfile')
-print(MDEIA_ROOT)
+MDEIA_ROOT = (os.path.join(STATICFILES_DIRS[0], 'upfile'))
 MEDIA_URL = '/upfile/'
