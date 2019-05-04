@@ -34,7 +34,7 @@
           <div class="layui-fluid">
             <div class="layui-row">
               <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                <div class="img"><img src="{% static 'res/img/sy_img1.jpg' %}" alt=""></div>
+                <div class="img"><img src="{% static 'blog/img/sy_img1.jpg' %}" alt=""></div>
               </div>
               <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
                 <div class="item-cont">
@@ -51,7 +51,7 @@
           <div class="layui-fluid">
             <div class="layui-row">
               <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                <div class="img"><img src="{% static 'res/img/sy_img2.jpg' %}" alt=""></div>
+                <div class="img"><img src="{% static 'blog/img/sy_img2.jpg' %}" alt=""></div>
               </div>
               <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
                 <div class="item-cont">
@@ -68,7 +68,7 @@
           <div class="layui-fluid">
             <div class="layui-row">
               <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                <div class="img"><img src="{% static 'res/img/sy_img3.jpg' %}" alt=""></div>
+                <div class="img"><img src="{% static 'blog/img/sy_img3.jpg' %}" alt=""></div>
               </div>
               <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
                 <div class="item-cont">
@@ -85,7 +85,7 @@
           <div class="layui-fluid">
             <div class="layui-row">
               <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                <div class="img"><img src="{% static 'res/img/sy_img4.jpg' %}" alt=""></div>
+                <div class="img"><img src="{% static 'blog/img/sy_img4.jpg' %}" alt=""></div>
               </div>
               <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
                 <div class="item-cont">
@@ -102,7 +102,7 @@
           <div class="layui-fluid">
             <div class="layui-row">
               <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                <div class="img"><img src="{% static 'res/img/sy_img5.jpg' %}" alt=""></div>
+                <div class="img"><img src="{% static 'blog/img/sy_img5.jpg' %}" alt=""></div>
               </div>
               <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
                 <div class="item-cont">
@@ -123,10 +123,10 @@
 
 {#导入js样式#}
 {% block JSETX %}
-    <script type="text/javascript" src="{% static 'res/layui/layui.js' %}"></script>
+    <script type="text/javascript" src="{% static 'blog/layui/layui.js' %}"></script>
   <script type="text/javascript">
     layui.config({
-      {#base: "{% static 'res/js/util\'%}"#}
+      {#base: "{% static 'blog/js/util\'%}"#}
     }).use(['element','laypage','jquery','menu'],function(){
       element = layui.element,laypage = layui.laypage,$ = layui.$,menu = layui.menu;
       laypage.render({

@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -115,6 +116,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+# 登录地址
+LOGIN_URL = '/user/login'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -127,3 +130,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # 上传目录
 MDEIA_ROOT = (os.path.join(STATICFILES_DIRS[0], 'upfile'))
 MEDIA_URL = '/upfile/'
+
+# Session配置
+SESSION_COOKIE_AGE = 60*60*24*30
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False

@@ -10,14 +10,14 @@ class UserInfo(models.Model):
     password = models.CharField(max_length=250)
     email = models.EmailField(max_length=50, null=True)
     # fixme 允许用户上传头像，未上传就使用默认头像
-    user_pic = models.ImageField(upload_to='icons', height_field='url_height',
-                                 width_field='url_width', default=DEFAULT_USER_PIC_PATH)
+    user_pic = models.ImageField(upload_to='icons', default=DEFAULT_USER_PIC_PATH)
     # 账户状态（注销后变成False）
     status = models.BooleanField(default=True)
     # 用户等级(999: 超级用户， 1：普通用户)
     level = models.IntegerField(default=1)
     created_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
+    token = models.CharField(max_length=200, null=True)
 
     class Meta:
         db_table = 'user'

@@ -14,13 +14,13 @@
           <h3>我的介绍</h3>
         </div>
         <div class="cont">
-          <img src="{% static 'res/img/xc_img1.jpg' %}">
+          <img src="{% static 'blog/img/xc_img1.jpg' %}">
           <div class="per-info">
             <p>
               <span class="name">小明</span><br />
               <span class="age">24岁</span><br />
               <span class="Career">设计师, 前端工程师</span><br />
-              <span class="interest">爱好旅游,打游戏</span>
+              <span class="inteblogt">爱好旅游,打游戏</span>
             </p>
           </div>
         </div>
@@ -33,25 +33,25 @@
           <div class="layui-row">
             <div class="layui-col-xs6 layui-col-sm3 layui-col-md3">
               <div class="cont-box">
-                <img src="{% static 'res/img/gr_img2.jpg' %}">
+                <img src="{% static 'blog/img/gr_img2.jpg' %}">
                 <p>80%</p>
               </div>
             </div>
             <div class="layui-col-xs6 layui-col-sm3 layui-col-md3">
               <div class="cont-box">
-                <img src="{% static 'res/img/gr_img3.jpg' %}">
+                <img src="{% static 'blog/img/gr_img3.jpg' %}">
                 <p>80%</p>
               </div>
             </div>
             <div class="layui-col-xs6 layui-col-sm3 layui-col-md3">
               <div class="cont-box">
-                <img src="{% static 'res/img/gr_img4.jpg' %}">
+                <img src="{% static 'blog/img/gr_img4.jpg' %}">
                 <p>80%</p>
               </div>
             </div>
             <div class="layui-col-xs6 layui-col-sm3 layui-col-md3">
               <div class="cont-box">
-                <img src="{% static 'res/img/gr_img5.jpg' %}">
+                <img src="{% static 'blog/img/gr_img5.jpg' %}">
                 <p>80%</p>
               </div>
             </div>
@@ -65,10 +65,10 @@
 
   {#导入js样式#}
 {% block JSETX %}
-  <script type="text/javascript" src="{% static 'res/layui/layui.js' %}"></script>
+  <script type="text/javascript" src="{% static 'blog/layui/layui.js' %}"></script>
   <script type="text/javascript">
     layui.config({
-      base: "{% static 'res/js/util/'%}"
+      base: "{% static 'blog/js/util/'%}"
     }).use(['element','laypage','form','layer','menu'],function(){
       element = layui.element,laypage = layui.laypage,form = layui.form,layer = layui.layer,menu = layui.menu;
       menu.init();

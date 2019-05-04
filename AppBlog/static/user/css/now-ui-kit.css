@@ -4685,6 +4685,10 @@ Created using IcoMoon - icomoon.io
     content: "\ea1b";
 }
 
+.now-ui-icons.mail:before {
+  content: "\1F582";
+}
+
 .now-ui-icons.gestures_tap-01:before {
     content: "\ea5a";
 }
