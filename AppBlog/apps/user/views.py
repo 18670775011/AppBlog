@@ -1,13 +1,11 @@
-from django.http import HttpResponse
+from django.db import transaction
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 
 from AppBlog.apps.user.models import UserInfo
 from AppBlog.common.func_tools import encrypt_pw, uuid_str
-
-ADMIN_USERNAME = 'admin'
-ADMIN_PASSWORD = 'admin123'
 
 
 class LoginView(View):
@@ -44,23 +42,44 @@ class RegisterView(View):
         username = request.POST.get('username')
         password = request.POST.get('password')
         email = request.POST.get('email')
-        # fixme 前端js对密码进行加密处理
-        # fixme 前后端都增加数据格式效验以及用户是否存在效验
+        # TODO 前端js对密码进行加密处理
+        # TODO 前后端都增加数据格式效验以及用户是否存在效验
         # 存入数据库,目前不对用户名邮箱格式进行效验
-        self._create_user(request, username, password, email)
-        # 返回session
-        return redirect(reverse('blog:index', args=[], current_app=self.request.resolver_match.namespace))
+        data = self._create_user(request, username, password, email)
+        return redirect(reverse('blog:index', args=[data], current_app=self.request.resolver_match.namespace))
 
     def _create_user(self, request, username, password, email):
-        user_info = UserInfo()
-        user_info.user_name = username
-        user_info.password = encrypt_pw(password)
-        user_info.email = email
-        token = uuid_str(username)
-        user_info.token = token
-        request.session['token'] = token
+        """
+        数据库创建用户
+        :param request: request对象
+        :param username: 用户名
+        :param password: 密码
+        :param email: 邮箱
+        :return:
+        """
+        res = dict()
+        data = dict()
         try:
-            user_info.save()
+            with transaction.atomic():
+                user_info = UserInfo()
+                user_info.user_name = username
+                user_info.password = encrypt_pw(password)
+                user_info.email = email
+                token = uuid_str(username)
+                user_info.token = token
+                user_info.save()
+
+                # 返回session
+                request.session['token'] = token
+
+                data['username'] = username
+                res['status'] = 1
+                res['data'] = data
+
         except Exception as ex:
-            # fixme 日志记录报错信息
-            return HttpResponse('创建用户失败，请重试或联系管理员！')
+            # TODO 日志记录报错信息
+            msg = ('Failed to create user, please try again or contact the administrator! res: %s', ex)
+            res['status'] = 0
+
+        finally:
+            return res

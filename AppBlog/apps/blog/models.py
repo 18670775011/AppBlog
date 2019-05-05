@@ -11,6 +11,8 @@ class BlogInfo(models.Model):
     user = models.ForeignKey('user.UserInfo', on_delete=models.DO_NOTHING)
     # fixme 对应分组被删后，移至默认分组
     type = models.ForeignKey('BlogGroup', on_delete=models.SET_DEFAULT, default='default_group')
+    # 文章状态，0为草稿，1为发布
+    status = models.IntegerField(max_length=1, default=0)
 
     class Meta:
         db_table = 'blog'
