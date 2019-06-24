@@ -18,6 +18,7 @@ class BlogEditView(View):
 
     @transaction.atomic
     def post(self, request):
+
         title = request.POST.get('title')
         content = request.POST.get('content')
         blog_type = request.POST.get('type')
@@ -26,5 +27,8 @@ class BlogEditView(View):
         blog = BlogInfo()
         blog.title = title
         blog.content = content
-        blog.type = blog_type
+        # TODO 存入数据库
+        # blog.type = blog_type
+        # blog.save()
+
         return render(request, 'blog/editblog.html', context={'title': title})

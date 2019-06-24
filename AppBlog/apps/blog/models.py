@@ -10,7 +10,7 @@ class BlogInfo(models.Model):
     # Django会为每一个外键添加_id后缀
     user = models.ForeignKey('user.UserInfo', on_delete=models.DO_NOTHING)
     # fixme 对应分组被删后，移至默认分组
-    type = models.ForeignKey('BlogGroup', on_delete=models.SET_DEFAULT, default='default_group')
+    type = models.ForeignKey('BlogGroup', on_delete=models.SET_DEFAULT, default=0)
     # 文章状态，0为草稿，1为发布
     status = models.IntegerField(max_length=1, default=0)
 
