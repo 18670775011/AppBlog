@@ -1,10 +1,13 @@
+import json
 import time
 import logging
 
 from django.db import transaction
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
 
+from AppBlog.apps.blog.form import GroupForm
 from AppBlog.apps.blog.models import BlogInfo, BlogGroup
 
 LOG = logging.getLogger(__name__)
@@ -43,13 +46,15 @@ class BlogEditView(View):
 class BlogGroup(View):
     """博客分组"""
     def get(self, request):
-        pass
+        res = {'success': 1}
+        return HttpResponse(json.dumps(res), content_type="application/json")
 
     def post(self, request):
-        g_name = request.POST.get('g_name')
-        create_time = time.time()
+        if not GroupForm(request.POST).is_va0lid():
+            LOG.error("Failed to check params!")
 
+        g_name = request.POST.get('g_name')
         group = BlogGroup()
         group.name = g_name
-        group.created_time = create_time
         group.save()
+        LOG.info("Success to save group! group name: %s" % g_name)

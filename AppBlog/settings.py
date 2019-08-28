@@ -131,7 +131,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 # 日志配置
 LOGGING = {
-    'version': 1,  # 指明dictConnfig的版本，目前就只有一个版本，哈哈
+    'version': 1,  # 指明dictConnfig的版本，目前就只有一个版本
     'disable_existing_loggers': True,  # 禁用所有的已经存在的日志配置
     'formatters': {  # 格式器
         'verbose': {  # 详细

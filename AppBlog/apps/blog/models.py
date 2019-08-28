@@ -23,7 +23,7 @@ class BlogGroup(models.Model):
     name = models.CharField(max_length=50)
     # fixme 后期允许在分组里面再建分组
     created_time = models.DateTimeField(auto_now_add=True)
-    update_time = models.DateTimeField(auto_now=True)
+    update_time = models.DateTimeField(null=True)
 
     class Meta:
         db_table = 'blog_group'
