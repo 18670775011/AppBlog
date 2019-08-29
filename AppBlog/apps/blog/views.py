@@ -10,7 +10,7 @@ from django.views import View
 from AppBlog.apps.blog.form import GroupForm
 from AppBlog.apps.blog.models import BlogInfo, BlogGroup
 
-LOG = logging.getLogger(__name__)
+LOG = logging.getLogger('xxx.log')
 
 
 class BlogView(View):

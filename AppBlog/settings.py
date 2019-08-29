@@ -137,47 +137,55 @@ LOGGING = {
         'verbose': {  # 详细
             'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
         },
-        'simple': {  # 简单
+        'standard': {  # 简单
             'format': '%(levelname)s %(message)s'
         },
     },
-    'filters': {  # 过滤器
-        'special': {  # 使用project.logging.SpecialFilter，别名special，可以接受其他的参数
-            '()': 'project.logging.SpecialFilter',
-            'foo': 'bar',  # 参数，名为foo，值为bar
+    'filters': {  # 过滤器，做额外的控制可以通过添加 filter 来给日志处理的过程增加额外条件。
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
         }
     },
     'handlers': {  # 处理器，在这里定义了三个处理器
         'null': {  # Null处理器，所有高于（包括）debug的消息会被传到/dev/null
             'level': 'DEBUG',
-            'class': 'django.utils.log.NullHandler',
+            'class': 'logging.NullHandler',
         },
-        'console': {  # 流处理器，所有的高于（包括）debug的消息会被传到stderr，使用的是simple格式器
+        'console': {  # 输出到控制台
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
-            'formatter': 'simple'
+            'formatter': 'standard',
         },
-        'mail_admins': {  # AdminEmail处理器，所有高于（包括）而error的消息会被发送给站点管理员，使用的是special格式器
+        'debug': {  # 记录到日志文件(需要创建对应的目录，否则会出错)
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, "log", 'debug.log'),  # 日志输出文件
+            'maxBytes': 1024 * 1024 * 5,  # 文件大小
+            'backupCount': 5,  # 备份份数
+            'formatter': 'standard',  # 使用哪种formatters日志格式
+        },
+        'mail_admins': {  # 发送邮件通知管理员
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler',
-            'filters': ['special']
-        }
+            'filters': ['require_debug_false'],  # 仅当 DEBUG = False 时才发送邮件
+            'include_html': True,
+        },
     },
     'loggers': {  # 定义了三个记录器
-        'django': {  # 使用null处理器，所有高于（包括）info的消息会被发往null处理器，向父层次传递信息
-            'handlers': ['null'],
-            'propagate': True,
-            'level': 'INFO',
+        'django': {  # 使用null处理器，所有高于（包括）info的消息会被发往null处理器，不向父层次传递信息
+            'handlers': ['console'],
+            'propagate': False,
+            'level': 'DEBUG',
         },
-        'django.request': {  # 所有高于（包括）error的消息会被发往mail_admins处理器，消息不向父层次发送
-            'handlers': ['mail_admins'],
+        'django.request': {  # 所有高于（包括）error的消息会被发往mail_admins处理器，消息向父层次发送
+            'handlers': ['debug', 'mail_admins'],
             'level': 'ERROR',
+            'propagate': True,
+        },
+        # 对于不在 ALLOWED_HOSTS 中的请求不发送报错邮件
+        'django.security.DisallowedHost': {
+            'handlers': ['null'],
             'propagate': False,
         },
-        'myproject.custom': {  # 所有高于（包括）info的消息同时会被发往console和mail_admins处理器，使用special过滤器
-            'handlers': ['console', 'mail_admins'],
-            'level': 'INFO',
-            'filters': ['special']
-        }
     }
 }
