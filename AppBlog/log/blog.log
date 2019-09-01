@@ -1,0 +1,4 @@
+2019-09-01 15:32:08 DEBUG  E:\Study\AppBlog\AppBlog\apps\blog\views.py [ 50] blog debug test
+2019-09-01 15:32:08 INFO  E:\Study\AppBlog\AppBlog\apps\blog\views.py [ 51] blog info test
+2019-09-01 15:32:08 ERROR  E:\Study\AppBlog\AppBlog\apps\blog\views.py [ 52] blog error test
+2019-09-01 15:34:25 ERROR  E:\Study\AppBlog\AppBlog\apps\blog\views.py [ 52] blog error test
