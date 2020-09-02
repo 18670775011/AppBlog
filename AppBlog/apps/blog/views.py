@@ -50,7 +50,7 @@ class BlogGroup(View):
         return HttpResponse(json.dumps(res), content_type="application/json")
 
     def post(self, request):
-        if not GroupForm(request.POST).is_va0lid():
+        if not GroupForm(request.POST).is_valid():
             LOG.error("Failed to check params!")
 
         g_name = request.POST.get('g_name')

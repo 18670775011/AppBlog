@@ -55,7 +55,9 @@ ROOT_URLCONF = 'AppBlog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'template')],
+        # 2020/05/04 开始使用vue框架 by ailei
+        # 'DIRS': [os.path.join(BASE_DIR, 'template')],
+        'DIRS': ['src/dist'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,7 +121,13 @@ LOGIN_URL = '/user/login'
 
 # 静态资源文件
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+SRC_ABSPATH = os.path.abspath(os.path.dirname(BASE_DIR))
+STATIC_ROOT = os.path.join(SRC_ABSPATH, 'dist', 'static')
+STATICFILES_DIRS = [
+    os.path.join(SRC_ABSPATH, "src", "dist", "static"),
+]
+print(STATIC_ROOT, STATICFILES_DIRS)
 
 # 上传目录
 MDEIA_ROOT = (os.path.join(STATICFILES_DIRS[0], 'upfile'))
